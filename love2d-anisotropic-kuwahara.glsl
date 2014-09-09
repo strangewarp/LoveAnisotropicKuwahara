@@ -67,7 +67,6 @@ vec4 effect (vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         number sigma2 = s[k].r + s[k].g + s[k].b;
         if (sigma2 < min_sigma2) {
             min_sigma2 = sigma2;
-            gl_FragColor = vec4(m[k], 1.0);
             outpix = vec4(m[k], 1.0);
         }
     }
