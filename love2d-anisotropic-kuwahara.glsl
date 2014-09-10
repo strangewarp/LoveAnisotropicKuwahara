@@ -10,6 +10,8 @@
 
 extern Image src;
 extern float radius;
+extern float window_width;
+extern float window_height;
 
 vec4 effect (vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
 
@@ -17,7 +19,7 @@ vec4 effect (vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
 
     int rad = int(radius);
 
-    vec2 src_size = vec2(800, 600);
+    vec2 src_size = vec2(int(window_width), int(window_height));
     vec2 uv = gl_FragCoord.xy / src_size;
     number n = number((rad + 1) * (rad + 1));
 
