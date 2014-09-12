@@ -20,15 +20,14 @@ vec4 effect (vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
     int rad = int(radius);
 
     vec2 src_size = vec2(int(window_width), int(window_height));
-    vec2 uv = gl_FragCoord.xy / src_size;
+    vec2 uv = texture_coords;
     number n = number((rad + 1) * (rad + 1));
-
-    vec3 compare = Texel(src, uv / src_size).rgb;
-    bool diffpix = false;
 
     ////////////////////////////////////////////////////////////////////////////////
     // Bilateral difference-check, to speed up the processing of large flat areas //
     ////////////////////////////////////////////////////////////////////////////////
+    vec3 compare = Texel(src, uv / src_size).rgb;
+    bool diffpix = false;
     for (int j = -rad; j <= rad; ++j) {
         if (Texel(src, uv + vec2(0,j) / src_size).rgb != compare) {
             diffpix = true;
